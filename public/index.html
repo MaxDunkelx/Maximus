@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maximus</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body data-mode="ready" data-presence="booting">
+    <div id="void" aria-hidden="true"></div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">Local command</p>
+            <h1>Maximus</h1>
+          </div>
+        </div>
+        <button id="new-chat" type="button">New conversation</button>
+        <div id="conversation-list" class="list" role="list"></div>
+        <section class="panel">
+          <h2>Notes</h2>
+          <div id="note-list" class="list compact"></div>
+        </section>
+        <section class="panel">
+          <h2>Controls</h2>
+          <label for="autonomy">Autonomy</label>
+          <select id="autonomy">
+            <option value="0">0 — Answer only</option>
+            <option value="1">1 — Approve writes</option>
+            <option value="2">2 — Local writes allowed</option>
+            <option value="3">3 — Same gates, reserved</option>
+          </select>
+          <label for="token">API token</label>
+          <input id="token" type="password" autocomplete="off" placeholder="Only if the server requires one" />
+          <p id="health" class="meta">Checking status…</p>
+        </section>
+      </aside>
+      <main class="workspace">
+        <svg class="veins" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path class="vein out thick" d="M600 390 C620 300 760 250 920 210 C1040 180 1140 120 1260 80" />
+          <path class="vein out" d="M760 250 C820 180 900 160 980 90" />
+          <path class="vein out" d="M920 210 C960 280 1040 320 1160 340" />
+          <path class="vein in thick" d="M600 390 C540 280 360 230 200 170 C80 120 -20 80 -80 140" />
+          <path class="vein in" d="M360 230 C300 160 220 150 90 190" />
+          <path class="vein in" d="M200 170 C150 240 80 280 -40 300" />
+          <path class="vein out thick" d="M600 390 C700 460 860 500 1040 560 C1160 600 1240 700 1280 820" />
+          <path class="vein out" d="M860 500 C940 560 980 640 920 760" />
+          <path class="vein in thick" d="M600 390 C480 470 300 520 140 600 C40 660 -40 760 -20 860" />
+          <path class="vein in" d="M300 520 C220 580 160 680 220 780" />
+          <path class="vein out" d="M600 390 C640 220 700 120 760 20" />
+          <path class="vein in" d="M600 390 C520 200 430 90 360 -20" />
+          <path class="vein out" d="M600 390 C780 360 980 340 1200 360" />
+          <path class="vein in" d="M600 390 C420 360 180 350 -20 390" />
+          <path class="vein out thin" d="M700 460 C760 420 820 430 900 400" />
+          <path class="vein in thin" d="M480 470 C400 430 340 450 250 420" />
+        </svg>
+        <header class="topbar">
+          <p id="conversation-title" class="title">New conversation</p>
+          <div class="topbar-actions">
+            <button id="delete-conversation" type="button" disabled>Delete conversation</button>
+            <button id="activity-toggle" type="button">Activity</button>
+          </div>
+        </header>
+        <section id="activity" class="activity" hidden>
+          <h2>Recent actions</h2>
+          <div id="activity-list"></div>
+        </section>
+        <div id="banner" class="banner" hidden></div>
+        <section class="stage">
+          <div class="core" id="core">
+            <div class="hud" aria-hidden="true">
+              <div class="ticks"></div>
+              <div class="scan"></div>
+              <div class="orbit orbit-outer"></div>
+              <div class="orbit orbit-mid"></div>
+              <div class="orbit orbit-inner"></div>
+              <div class="orbit orbit-dash"></div>
+              <div class="node-track track-a"><i></i></div>
+              <div class="node-track track-b"><i></i></div>
+              <div class="node-track track-c"><i></i></div>
+              <svg class="spokes" id="spokes" viewBox="-200 -200 400 400"></svg>
+              <div class="crosshair"></div>
+              <div class="iris"></div>
+            </div>
+            <button id="talk" type="button" aria-pressed="false">Talk</button>
+          </div>
+          <p id="status" class="status" role="status">Ready</p>
+          <p id="heard" class="heard">Click the core and speak.</p>
+          <label class="keep-listening" for="hands-free">
+            <input id="hands-free" type="checkbox" />
+            Keep listening
+          </label>
+        </section>
+        <div id="transcript" class="transcript" role="log" aria-live="polite" aria-relevant="additions"></div>
+        <details class="type-instead">
+          <summary>Type instead</summary>
+          <form id="composer" class="composer">
+            <label class="sr-only" for="message">Message</label>
+            <textarea id="message" rows="2" placeholder="Type if the microphone is unavailable"></textarea>
+            <button id="send" type="submit">Send</button>
+          </form>
+        </details>
+      </main>
+    </div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
